@@ -1,0 +1,8 @@
+{% load crispy_forms_tags %}
+<form method="get">
+    {{ f.form|crispy }}
+    <button type="submit">Search</button>
+</form>
+{% for obj in f.qs %}
+  {{obj}}<br>
+{% endfor %}
