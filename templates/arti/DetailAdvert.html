@@ -1,0 +1,40 @@
+{% extends 'arti/Base/main.html' %}
+{% load static %}
+{% block title %}
+آرتان-{{title}}
+{% endblock title %}
+
+{% block styles %}
+
+{% endblock styles %}
+
+{% block body %}
+{% include "arti/components/nav.html" %}
+<div id="main">
+
+    {% if advert %}
+    {% include "arti/components/DetailAdvert/_header.html" with advert=advert %}
+    {% include "arti/components/DetailAdvert/_gallery.html" %}
+    <div class="section mt-9 mb-9">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    {% include "arti/components/DetailAdvert/_advertdetail.html" with advert=advert %}
+                    {% include "arti/components/DetailAdvert/_agentdetail.html" with agent=advert.user %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include "arti/components/DetailAdvert/_contactestate.html" %}
+    {% else %}
+    {% include "arti/components/404.html" %}
+    {% endif %}
+
+
+    {% include "arti/components/footer.html" %}
+</div>
+{% endblock body %}
+
+{% block scripts %}
+
+{% endblock scripts %}

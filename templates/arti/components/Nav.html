@@ -1,0 +1,216 @@
+{% load static %}
+{% load Company %}
+{% get_company as company %}
+<header class="header header-desktop">
+    <div class="navbar-wrapper">
+        <div class="topbar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 hidden-xs">
+                        <div class="topmeta">
+                            <i class="fa fa-mobile"></i>
+                            هم اکنون تماس بگیرید <a href="tel:{{company.phone}}" class="ltr_text">{{company.phone}}</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="topmeta topmeta-right pull-right">
+                            <p class="popup-login">
+
+                                {% if request.user.is_authenticated %}
+                                {% if request.user.get_role_title %}
+                                <a href="{% url 'dashboard:home'  %}">داشبورد</a> /
+                                {% endif %}
+                                <a href="{% url 'account:Logout' %}">خروج</a>
+
+                                {% else %}
+                                <a href="{% url 'account:Login' %}">ورود</a> / <a href="{% url 'account:SignUp'  %}">
+                                    ثبت نام</a>
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-content">
+                    <div class="navbar-header pull-left">
+                        <button data-target=".nav-collapse" class="btn-navbar icon-menu" type="button">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <a href="./" class="navbar-brand" title="Real Estate HTML Template">
+                            <img class="logo-img logo-normal" src="/static/arti/images/logo.png"
+                                alt="Real Estate HTML Template">
+                        </a>
+                    </div>
+                    <div class="pull-right navbar-meta meta-property">
+                        <div class="meta-content">
+                            <a href="#" class="meta-property button">
+                                <span><i class="fa fa-plus-circle"></i></span>درخواست ثبت ملک
+                            </a>
+                        </div>
+                    </div>
+                    <div class="pull-right header-minicart">
+                        <div class="widget-shopping-cart-content">
+                            <a class="minicart-link-hover" title="View cart" href="#">
+                                <i class="ion-android-cart"></i><span>0</span>
+                            </a>
+                            <div class="wrap-minicart">
+                                <ul class="cart_list product_list_widget">
+                                    <li class="empty">محصولی در سبد خرید وجود ندارد.</li>
+                                </ul><!-- end product list -->
+                            </div> <!-- /.wrap_minicart -->
+                        </div>
+                    </div>
+                    <nav class="pull-right main-menu">
+                        <ul class="nav-collapse navbar-nav">
+                            <li class="current">
+                                <a href="/">خانه</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'home:advert' %}">ملک ها</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'home:agent' %}">نمایندگان</a>
+                            </li>
+                            <li class="megamenu mega-col-4">
+                                <a href="#">فروشگاه</a>
+                                <ul class="sub-menu">
+                                    <li>
+                                        <a href="#">خدمات فروشگاه</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="#">فروشگاه توری</a></li>
+                                            <li><a href="#">فروشگاه سطری</a></li>
+                                            <li><a href="#">جزئیات فروشگاه</a></li>
+                                            <li><a href="#">سبد خرید خالی</a></li>
+                                            <li><a href="#">سبد خرید</a></li>
+                                            <li><a href="#">پرداخت</a></li>
+                                            <li><a href="#">حساب کاربری</a></li>
+                                        </ul>
+                                        <i class="fa fa-angle-down"></i>
+                                    </li>
+                                    <li>
+                                        <div class="megamenu-widget-area">
+                                            <div class="widget widget-products">
+                                                <h3 class="widget-title">جدیدترین ها</h3>
+                                                <ul class="product-list-widget">
+                                                    <li>
+                                                        <a href="#">
+                                                            <img src="{% static 'arti/images/placeholder.png' %}"
+                                                                alt="Placeholder">
+                                                            <span class="product-title">رایگان</span>
+                                                        </a>
+                                                        <span class="amount">560,000,000 تومان</span>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <img src="{% static 'arti/images/shop/thumb/shop_1.png' %}"
+                                                                alt="">
+                                                            <span class="product-title">لورم ایپسوم متن
+                                                                ساختگی</span>
+                                                        </a>
+                                                        <span class="amount">560,000,000 تومان</span>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <img src="{% static 'arti/images/shop/thumb/shop_2.png' %}"
+                                                                alt="">
+                                                            <span class="product-title">لورم ایپسوم</span>
+                                                        </a>
+                                                        <span class="amount">560,000,000 تومان</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="megamenu-widget-area">
+                                            <div class="widget widget-products">
+                                                <h3 class="widget-title">فروش‌ها</h3>
+                                                <ul class="product-list-widget">
+                                                    <li>
+                                                        <a href="#">
+                                                            <img src="/static/arti/images/shop/thumb/shop_3.jpg"
+                                                                alt="Placeholder">
+                                                            <span class="product-title">لورم ایپسوم متن</span>
+                                                        </a>
+                                                        <span class="amount">560,000,000 تومان</span>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <img src="/static/arti/images/shop/thumb/shop_4.jpg" alt="">
+                                                            <span class="product-title">لورم ایپسوم متن</span>
+                                                        </a>
+                                                        <span class="amount">560,000,000 تومان</span>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <img src="/static/arti/images/shop/thumb/shop_5.jpg" alt="">
+                                                            <span class="product-title">لورم ایپسوم متن
+                                                                ساختگی</span>
+                                                        </a>
+                                                        <span class="amount">560,000,000 تومان</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="megamenu-widget-area">
+                                            <div class="widget widget-products">
+                                                <h3 class="widget-title">بالاترین امتیاز</h3>
+                                                <ul class="product-list-widget">
+                                                    <li>
+                                                        <a href="#">
+                                                            <img src="/static/arti/images/shop/thumb/shop_6.jpg"
+                                                                alt="Placeholder">
+                                                            <span class="product-title">لورم ایپسوم متن</span>
+                                                        </a>
+                                                        <div class="star-rating">
+                                                            <span style="width:100%"></span>
+                                                        </div>
+                                                        <span class="amount">560,000,000 تومان</span>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <img src="/static/arti/images/shop/thumb/shop_7.jpg" alt="">
+                                                            <span class="product-title">لورم ایپسوم متن</span>
+                                                        </a>
+                                                        <div class="star-rating">
+                                                            <span style="width:100%"></span>
+                                                        </div>
+                                                        <span class="amount">560,000,000 تومان</span>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <img src="{% static 'arti/images/shop/thumb/shop_1.png' %}"
+                                                                alt="">
+                                                            <span class="product-title">لورم ایپسوم</span>
+                                                        </a>
+                                                        <div class="star-rating">
+                                                            <span style="width:100%"></span>
+                                                        </div>
+                                                        <span class="amount">560,000,000 تومان</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <i class="fa fa-angle-down"></i>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="pull-right navbar-meta meta-property show_on_mobile">
+                        <div class="meta-content">
+                            <a href="#" class="meta-property button">
+                                <span><i class="fa fa-plus-circle"></i></span>افزودن ملک
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

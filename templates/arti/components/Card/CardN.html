@@ -1,0 +1,59 @@
+<div class="property-item">
+    <div class="property-item-wrap">
+        <div class="item-head">
+            <h4 class="item-title">
+                <a href="{{advert.get_absolute_url}}" title="Vilayi 2 tabage">{{advert.title}}</a>
+            </h4>
+            <span class="location">{{advert.stat}}</span>
+        </div>
+        <div class="item-featured">
+            <a href="{{advert.get_absolute_url}}" title="Loft Above The City">
+                <img src="{{advert.get_poster}}" alt="{{advert.title}}"
+                    style="width: 100%; height: 18vw; object-fit: cover;">
+            </a>
+            <span class="property-status">برای {{advert.get_category_display}}</span>
+        </div>
+        <div class="info">
+            <span class="primary-file-1">
+                <i class="icon-ruler"></i> <span>{{advert.area}} متر مربع</span>
+            </span>
+            <span class="primary-file-2">
+                <i class="icon-bed"></i> <span>{{advert.get_beds_display}} اتاق خواب</span>
+            </span>
+            <span class="primary-file-3">
+                <i class="icon-bath"></i> <span>{{advert.get_baths_display}} حمام</span>
+            </span>
+        </div>
+        <div class="action">
+            <div class="price">
+                <span class="amount">{{advert.get_price_split}} تومان</span>
+            </div>
+            <div class="action-post">
+                <a data-toggle="tooltip" data-placement="top" title="" data-original-title="علاقه‌مندی‌ها" href="#">
+                    <i class="fa fa-heart-o"></i>
+                </a>
+                <div class="property-sharing">
+                    <a data-toggle="tooltip" data-placement="top" title="" data-original-title="علاقه‌مندی‌ها"
+                        class="like" href="#">
+                        <i class="ion-android-share-alt"></i>
+                    </a>
+                    <div class="social-property">
+                        <a title="اشتراک‌گذاری در فیسبوک" class="share">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                        <a title="اشتراک‌گذاری در توییتر" class="share">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a title="اشتراک‌گذاری در تلگرام" class="share">
+                            <i class="fa fa-telegram"></i>
+                        </a>
+                    </div>
+                </div>
+                <a data-toggle="tooltip" data-placement="top" title="" data-original-title="مقایسه" class="compare"
+                    href="#">
+                    <i class="ion-arrow-swap"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

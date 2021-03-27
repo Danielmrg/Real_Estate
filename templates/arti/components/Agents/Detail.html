@@ -1,0 +1,51 @@
+<div class="section mt-7 mb-7">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="about-agent">
+                    <div class="row agent-detail">
+                        <div class="thumbnail col-md-5">
+                            <img src="{{agent.get_image}}" alt="{{agent.get_full_name}}">
+                        </div>
+                        <div class="info-agent col-md-7">
+                            <div class="box-content">
+                                <h3 class="title">
+                                    <a href="" title="Johnny Sanders">{{agent.get_full_name}}</a>
+                                </h3>
+                                <div class="box-info">
+                                    <div class="item-info">
+                                        <span class="position">مشاور املاک </span>
+                                    </div>
+                                    <ul class="item-info">
+                                        <li class="agent-email">
+                                            <a href="mailto:{{agent.email}}" target="_top">{{agent.email}}</a>
+                                        </li>
+                                        <li class="agent-mobile">
+                                            <a class="ltr_text" href="tel:{{agent.phone}}"
+                                                target="_top">{{agent.phone}}</a>
+                                        </li>
+                                        <li class="agent-address">سعادت آباد</li>
+                                    </ul>
+                                    <div class="agent-about">
+                                        {{agent.bio}}
+                                    </div>
+                                    <div class="agent-action">
+                                        <div class="col-sm-6 contact-now">
+                                            <a href="#" title="Johnny Sanders" class="button">هم اکنون تماس بگیرید </a>
+                                        </div>
+                                        <div class="col-sm-6 agent-social text-right text-center-sm">
+                                            <a class="fa fa-facebook" href="#"></a>
+                                            <a class="fa fa-twitter" href="#"></a>
+                                            <a class="fa fa-google" href="#"></a>
+                                            <a class="fa fa-pinterest" href="#"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+{% extends 'arti/Base/main.html' %}
+{% load static %}
+{% block title %}
+آرتان-{{title}}
+{% endblock title %}
+
+{% block styles %}
+
+{% endblock styles %}
+
+{% block body %}
+{% include "arti/components/nav.html" %}
+<div id="main">
+    <div class="section pt-7 pb-7">
+        <div class="container">
+            <div class="row">
+
+                {% include "arti/components/filter/filteradvert.html" %}
+                <div class="col-md-9">
+                    <div class="row">
+                        {% for advert in adverts %}
+                        <div class="col-sm-6">
+                            {% include "arti/components/card/CardN.html" with advert=advert %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% include "arti/components/pagination/advertpagination.html" with adverts=adverts %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include "arti/components/footer.html" %}
+</div>
+{% endblock body %}
+
+{% block scripts %}
+
+{% endblock scripts %}

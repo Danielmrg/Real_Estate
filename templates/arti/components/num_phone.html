@@ -1,0 +1,21 @@
+{% load Company %}
+{% get_company as company %}
+<div class="section section-overlay section-bg-11">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="ads-service">
+                    <h3 class="title">بهترین خدمات ملکی</h3>
+                    <span class="sub-title">{{company.bio}}</span>
+                    <div class="ads-phone">
+                        <i class="fa fa-phone"></i>
+                        <div class="ads-desc">
+                            هم اکنون تماس بگیرید<br>
+                            <a href="tel:{{company.phone}}" class="ltr_text">{{company.phone}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

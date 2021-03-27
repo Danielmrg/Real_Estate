@@ -1,0 +1,39 @@
+{% load Anythings %}
+{% get_agent as agents %}
+<div class="section mb-11">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <div class="wrap-title">
+                        <h3 class="title">
+                            <span class="first-word">نماینده های</span> ما
+                        </h3>
+                        <p class="sub-title">
+                            <i class="icon-decotitle"></i>
+                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
+                        </p>
+                    </div>
+                </div>
+                <div class="agent-carousel row owl-carousel owl-theme owl-rtl owl-loaded owl-drag"
+                    data-auto-play="false" data-desktop="{{agents|length}}" data-laptop="3" data-tablet="2"
+                    data-mobile="1">
+                    <div class="owl-stage-outer">
+                        <div class="owl-stage"
+                            style="transform: translate3d(750px, 0px, 0px); transition: all 0s ease 0s; width: 3000px;">
+                            {% for agent in agents %}
+                            {% include "arti/components/others/agent_firstpage.html" with agent=agent %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="owl-nav">
+                        <a class="btn btn-primary btn-lg" href="{% url 'home:agent' %}">
+                            <i class="prev-agent ion-ios-arrow-right"></i> موارد بیشتر
+                        </a>
+                    </div>
+                    <div class="owl-dots disabled"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

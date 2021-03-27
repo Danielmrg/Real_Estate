@@ -1,0 +1,32 @@
+{% extends 'arti/Base/main.html' %}
+{% load static %}
+{% block title %}
+آرتان-{{title}}
+{% endblock title %}
+
+{% block styles %}
+
+{% endblock styles %}
+
+{% block body %}
+{% include "arti/components/nav.html" %}
+<div id="main">
+    <div class="section pt-7 pb-7">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 col-sm-12">
+                    {% for agent in agents %}
+                    {% include "arti/components/agents/card.html" with agent=agent %}
+                    {% endfor %}
+                    {% include "arti/components/agents/pagination.html" with agents=agents %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include "arti/components/footer.html" %}
+</div>
+{% endblock body %}
+
+{% block scripts %}
+
+{% endblock scripts %}

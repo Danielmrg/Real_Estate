@@ -1,0 +1,31 @@
+{% if adverts.has_other_pages %}
+<span class="pagination-loop">
+    {% if adverts.has_previous %}
+    <a class="prev page-numbers {{ adverts.has_previous|yesno:' ,disabled' }}"
+        href="{% url 'home:advert' adverts.previous_page_number %}">
+        <i class="ion-ios-arrow-forward"></i>
+    </a>
+    {% else %}
+    <a class="prev page-numbers {{ adverts.has_previous|yesno:' ,disabled' }}">
+        <i class="ion-ios-arrow-forward"></i>
+    </a>
+    {% endif %}
+    {% for i in adverts.paginator.page_range %}
+    {% if adverts.number == i %}
+    <span class="page-numbers current">{{ i }}</span>
+    {% else %}
+    <a class="page-numbers" href="{% url 'home:advert' i %}">{{ i }}</a>
+    {% endif %}
+    {% endfor %}
+    {% if adverts.has_next %}
+    <a class="next page-numbers {{ adverts.has_next|yesno:',disabled' }}"
+        href="{% url 'home:advert' adverts.next_page_number %}">
+        <i class="ion-ios-arrow-back"></i>
+    </a>
+    {% else %}
+    <a class="next page-numbers {{ adverts.has_next|yesno:',disabled' }}">
+        <i class="ion-ios-arrow-back"></i>
+    </a>
+    {% endif %}
+</span>
+{% endif %}

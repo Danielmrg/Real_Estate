@@ -1,0 +1,102 @@
+{% extends 'arti/Base/main.html' %}
+{% block title %}{% endblock title %}
+
+{% block styles %}
+{% endblock styles %}
+
+{% block body %}
+{% include "arti/components/nav.html" %}
+<div id="main">
+    <div class="section mt-9 mb-9">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <h2>ثبت نام</h2>
+                    <div class="my-account-wrap">
+                        <form class="signup-form" method="POST">
+                            {% csrf_token %}
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="item-wrap">
+                                        <label for="{{form.username.id_for_label}}">نام کاربری<span
+                                                class="required">*</span></label>
+                                        {{form.username}}
+                                        {% for error in form.username.errors %}
+                                        <p class="text-danger">{{error}}</p>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="item-wrap">
+                                        <label for="{{form.phone.id_for_label}}">شماره تلفن<span
+                                                class="required">*</span></label>
+                                        {{form.phone}}
+                                        {% for error in form.phone.errors %}
+                                        <p class="text-danger">{{error}}</p>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="item-wrap">
+                                        <label for="{{form.Firstname.id_for_label}}">نام<span
+                                                class="required">*</span></label>
+                                        {{form.Firstname}}
+                                        {% for error in form.Firstname.errors %}
+                                        <p class="text-danger">{{error}}</p>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="item-wrap">
+                                        <label for="{{form.Lastname.id_for_label}}">نام خانوادگی<span
+                                                class="required">*</span></label>
+                                        {{form.Lastname}}
+                                        {% for error in form.Lastname.errors %}
+                                        <p class="text-danger">{{error}}</p>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="item-wrap">
+                                        <label for="{{form.password.id_for_label}}">رمز عبور<span
+                                                class="required">*</span></label>
+                                        {{form.password}}
+                                        {% for error in form.password.errors %}
+                                        <p class="text-danger">{{error}}</p>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="item-wrap">
+                                        <label for="{{form.re_password.id_for_label}}">تکرار رمز عبور<span
+                                                class="required">*</span></label>
+                                        {{form.re_password}}
+                                        {% for error in form.re_password.errors %}
+                                        <p class="text-danger">{{error}}</p>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item-wrap form-submit">
+                                <input type="submit" class="button-2" name="login" value="ثبت نام">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </div>
+    </div>
+    {% include "arti/components/footer.html" %}
+</div>
+{% endblock body %}
+
+{% block scripts %}
+
+{% endblock scripts %}

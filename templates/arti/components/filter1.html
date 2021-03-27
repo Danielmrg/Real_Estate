@@ -1,0 +1,101 @@
+<div class="section section-static section-bg-2 pt-9 pb-9">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <div class="wrap-title">
+                        <h3 class="title">
+                            <span class="first-word">جستجوی</span> ملک
+                        </h3>
+                        <p class="sub-title">
+                            <i class="icon-decotitle"></i>
+                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
+                        </p>
+                    </div>
+                </div>
+                <form class="advanced-search-property" action="{% url 'home:search-advert' %}">
+                    <div class="advanced-search-property-wrap">
+                        <div class="row">
+                            <div class="item-wrap col-md-3">
+                                <input type="text" id="keyword" name="keyword" value="{{request.GET.keyword}}"
+                                    placeholder="عبارت مورد جستجو ...">
+                            </div>
+                            <div class="item-wrap col-md-3">
+                                <select class="selection" name="category">
+                                    <option value="0">همه انواع قرارداد</option>
+                                    <option value="1">برای فروش</option>
+                                    <option value="2">برای رهن</option>
+                                    <option value="3">برای اجاره</option>
+                                </select>
+                            </div>
+                            <div class="item-wrap col-md-3">
+                                <select class="selection" name="status">
+                                    <option value="0">همه دسته بندی ها</option>
+                                    <option value="1">تجاری</option>
+                                    <option value="2">مسکونی</option>
+                                </select>
+                            </div>
+                            <div class="item-wrap col-md-3">
+                                <select class="selection" name="types">
+                                    <option value="0">همه انواع املاک</option>
+                                    <option value="1">ویلایی</option>
+                                    <option value="2">اپارتمانی</option>
+                                    <option value="3">زمین</option>
+                                    <option value="4">سایر وارد</option>
+                                </select>
+                            </div>
+                            <div class="item-wrap col-md-3">
+                                <select class="selection" name="property_bedrooms">
+                                    <option value="0">هر تعداد اتاق </option>
+                                    <option value="1">1-2</option>
+                                    <option value="2">3-4</option>
+                                    <option value="3">5-6</option>
+                                </select>
+                            </div>
+                            <div class="item-wrap col-md-3">
+                                <select class="selection" name="property_wc">
+                                    <option value="0">هر تعداد </option>
+                                    <option value="1">1-2</option>
+                                    <option value="2">3-4</option>
+                                    <option value="3">4-5</option>
+                                    <option value="4">5-6</option>
+                                </select>
+                            </div>
+                            <div class="item-wrap col-md-3">
+                                <div class="price_slider_wrapper widget_price_filter">
+                                    <div
+                                        class="price_slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+                                        <div class="ui-slider-range ui-widget-header ui-corner-all"
+                                            style="left: 0%; width: 100%;"></div><span
+                                            class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"
+                                            style="left: 0%;"></span><span
+                                            class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"
+                                            style="left: 100%;"></span>
+                                    </div>
+                                    <div class="price_slider_amount" data-currency="تومان" data-step="100000">
+                                        <input type="hidden" id="min_price" name="min_price" value="500000"
+                                            data-min="500000" placeholder="حداقل قیمت" style="display: none;">
+                                        <input type="hidden" id="max_price" name="max_price" value="30000000000"
+                                            data-max="30000000000" placeholder="حداکثر قیمت" style="display: none;">
+                                        <div class="price_label">
+                                            <span class="from">۵۰۰٬۰۰۰ تومان</span> - <span class="to">30٬۰۰۰٬۰۰۰٬۰۰۰
+                                                تومان</span>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row box-action">
+                            <div class="col-md-3 box-button">
+                                <button type="submit" class="button">
+                                    <span class="ion-search"></span> جستجوی ملک
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

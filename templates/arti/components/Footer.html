@@ -1,0 +1,39 @@
+{% load static %}
+{% load Company %}
+{% get_company as company %}
+<footer class="footer">
+    <div class="main-footer">
+        <div class="colophon wigetized">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-column-item col-md-6 col-sm-12">
+                        <div class="widget widget_text">
+                            <h4 class="widget-title">آرتان</h4>
+                            <div class="textwidget">
+                                <p>{{company.bio}}</p>
+                                <ul class="contact-info">
+                                    <li><i class="fa fa-map-marker"></i>{{company.address}}</li>
+                                    <li><i class="fa fa-phone"></i><span class="ltr_text">{{company.phone}}</span></li>
+                                    <li><i class="fa fa-envelope"></i>{{company.email}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-column-item col-md-6 col-sm-12">
+                        <div class="widget widget_text">
+                            <h4 class="widget-title">ساعات کاری</h4>
+                            <div class="textwidget">
+                                <ul class="open-info">
+                                    <li>شنبه تا چهارشنبه: 8AM - 10PM</li>
+                                    <li>پنجشنبه: 9AM - 8PM</li>
+                                    <li>جمعه: تعطیل</li>
+                                    <li>ما در تعطیلات رسمی هم کار میکنیم</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

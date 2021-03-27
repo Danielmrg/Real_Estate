@@ -1,0 +1,57 @@
+<div class="property-agent-contact">
+    <h3 class="box-title">تماس با نماینده </h3>
+    <div class="box-content col-md-6">
+        <div class="thumbnail col-md-6">
+            <img src="/static/arti/images/team/team_1.png" alt="{{agent.get_full_name}}"
+                style="width: 100%; height: 23vw; object-fit: cover;">
+        </div>
+        <div class="box-info col-md-6">
+            <h4 class="agent-name">
+                <a href="#" title="Bruck Banner">{{agent.get_full_name}}</a>
+            </h4>
+            <div class="item-info">
+                <span class="position">مشاور</span>
+            </div>
+            <ul class="item-info">
+
+                {% if agent.email %}
+                <li class="agent-email">
+                    <a href="mailto:contact.usa@landmark.com" target="_top">{{agent.email}}</a>
+                </li>
+                {% endif %}
+                <li class="agent-phone">
+                    <a href="tel:{{agent.phone}}" target="_top" class="ltr_text">{{agent.phone}}</a>
+                </li>
+                <li class="agent-address">سعادت آباد</li>
+            </ul>
+            <div class="agent-about">
+                {{agent.bio}}
+            </div>
+        </div>
+    </div>
+    <div class="box-contact-property col-md-6">
+        <div class="box-contact">
+            <div class="box-form">
+                <form class="box-contact-agent">
+                    <div class="item-wrap">
+                        <input type="text" name="name" placeholder="نام *">
+                    </div>
+                    <div class="item-wrap">
+                        <input type="text" name="phone" placeholder="تلفن">
+                    </div>
+                    <div class="item-wrap">
+                        <input type="text" name="email" placeholder="ایمیل *">
+                    </div>
+                    <div class="item-wrap">
+                        <textarea name="message" placeholder="پیام شما *"></textarea>
+                    </div>
+                    <div class="form-action">
+                        <button type="submit" class="button">
+                            <span>ارسال پیام</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

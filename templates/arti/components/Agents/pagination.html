@@ -1,0 +1,31 @@
+{% if agents.has_other_pages %}
+<span class="pagination-loop">
+    {% if agents.has_previous %}
+    <a class="prev page-numbers {{ agents.has_previous|yesno:' ,disabled' }}"
+        href="{% url 'home:agent' agents.previous_page_number %}">
+        <i class="ion-ios-arrow-forward"></i>
+    </a>
+    {% else %}
+    <a class="prev page-numbers {{ agents.has_previous|yesno:' ,disabled' }}">
+        <i class="ion-ios-arrow-forward"></i>
+    </a>
+    {% endif %}
+    {% for i in agents.paginator.page_range %}
+    {% if agents.number == i %}
+    <span class="page-numbers current">{{ i }}</span>
+    {% else %}
+    <a class="page-numbers" href="{% url 'home:agent' i %}">{{ i }}</a>
+    {% endif %}
+    {% endfor %}
+    {% if agents.has_next %}
+    <a class="next page-numbers {{ agents.has_next|yesno:',disabled' }}"
+        href="{% url 'home:agent' agents.next_page_number %}">
+        <i class="ion-ios-arrow-back"></i>
+    </a>
+    {% else %}
+    <a class="next page-numbers {{ agents.has_next|yesno:',disabled' }}">
+        <i class="ion-ios-arrow-back"></i>
+    </a>
+    {% endif %}
+</span>
+{% endif %}

@@ -1,0 +1,736 @@
+<div class="single-property-detail tab">
+    <div class="detail-header style-2">
+        <div class="action-post">
+            <a data-toggle="tooltip" data-placement="top" title="" data-original-title="چاپ" class="compare" href="#">
+                <i class="ion-printer"></i>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="" data-original-title="علاقه‌مندی‌ها" href="#">
+                <i class="fa fa-heart-o"></i>
+            </a>
+            <div class="property-sharing">
+                <a data-toggle="tooltip" data-placement="top" title="" data-original-title="اشتراک گذاری" class="like"
+                    href="#">
+                    <i class="ion-android-share-alt"></i>
+                </a>
+                <div class="social-property">
+                    <a title="اشتراک‌گذاری در فیسبوک" class="share">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                    <a title="اشتراک‌گذاری در توییتر" class="share">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a title="اشتراک‌گذاری در تلگرام" class="share">
+                        <i class="fa fa-telegram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <h3 class="detail-title">{{advert.title}}</h3>
+        <span class="property-status">برای {{advert.get_category_display}}</span>
+        <div class="info">
+            <span class="location">{{advert.stat}}</span>
+            <div class="price">{{advert.get_price_split}} تومان</div>
+        </div>
+    </div>
+    <div class="detail-content">
+        <ul class="detail-tabs tabs">
+            <li class="">
+                <a data-toggle="tab" href="#tab-desc" aria-expanded="false">توضیحات</a>
+            </li>
+
+            {% if address %}
+            <li class="">
+                <a data-toggle="tab" href="#tab-address" aria-expanded="false">آدرس</a>
+            </li>
+            {% endif %}
+
+            <li class="active">
+                <a data-toggle="tab" href="#tab-detail" aria-expanded="true">جزئیات</a>
+            </li>
+
+            {% if advert.url %}
+            <li class="">
+                <a data-toggle="tab" href="#tab-video" aria-expanded="false">ویدئو</a>
+            </li>
+            {% endif %}
+
+
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade" id="tab-desc">
+                <p>
+                    {{advert.description}}
+                </p>
+            </div>
+
+            {% if address %}
+
+            <div id="tab-address" class="tab-pane fade">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="content-box-item">
+                            <label>آدرس</label>
+                            <span>تبریز، پاستور جدید</span>
+                        </div>
+                        <div class="content-box-item">
+                            <label>کشور</label>
+                            <span>ایران</span>
+                        </div>
+                        <div class="content-box-item">
+                            <label>شهر</label>
+                            <span>نیوجرسی</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="content-box-item">
+                            <label>منطقه</label>
+                            <span>ائل گلی</span>
+                        </div>
+                        <div class="content-box-item">
+                            <label>کدپستی</label>
+                            <span>07305</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <div id="tab-detail" class="tab-pane fade active in">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="detail-header">
+                            <h3 class="detail-title">اطلاعات تکمیلی</h3>
+                        </div>
+                        <div class="content-box">
+                            <div class="content-box-item">
+                                <label>دسترسی</label>
+                                <span>آماده </span>
+                            </div>
+                            <div class="content-box-item">
+                                <label>وضعیت</label>
+                                <span><a href="#">برای {{advert.get_category_display}}</a></span>
+                            </div>
+                            <div class="content-box-item">
+                                <label>نوع</label>
+                                <span><a href="#">{{advert.get_house_type_display}}</a></span>
+                            </div>
+                            <div class="content-box-item">
+                                <label>قیمت</label>
+                                <span>{{advert.get_price_split}}</span>
+                            </div>
+                            <div class="content-box-item">
+                                <label>مساحت</label>
+                                <span>{{advert.area}}</span>
+                            </div>
+                            <div class="content-box-item">
+                                <label>اتاق خواب</label>
+                                <span>{{advert.get_beds_display}}</span>
+                            </div>
+                            <div class="content-box-item">
+                                <label>سرویس بهداشتی</label>
+                                <span>{{advert.get_wc_display}}</span>
+                            </div>
+                            <div class="content-box-item">
+                                <label>پارکینگ</label>
+                                <span>
+                                    {% if garages %}
+                                    دارد
+                                    {% else %}
+                                    ندارد
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <div class="content-box-item">
+                                <label>سال ساخت</label>
+                                <span>{{advert.year_created}}</span>
+                            </div>
+                            {% if advert.flooring %}
+                            <div class="content-box-item">
+                                <label>کفپوش</label>
+                                <span>{{advert.flooring}}</span>
+                            </div>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                    {% if advert.options.all %}
+                    <div class="col-md-6">
+                        <div class="detail-header">
+                            <h3 class="detail-title">ویژگی ها</h3>
+                        </div>
+                        <div class="content-box row">
+                            {% for op in advert.options.all %}
+                            <div class="col-xs-6">
+                                <div class="content-box-item">
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                    {{ op.title }}
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% if advert.url %}
+            <div id="tab-video" class="tab-pane fade">
+                <iframe height="420" src="{{advert.url}}" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="detail-header">
+        <h3 class="detail-title">نقشه ملک</h3>
+    </div>
+    <div class="detail-content">
+        <div class="floor-plan-carousel owl-carousel owl-theme owl-rtl owl-loaded owl-drag" data-auto-play="false"
+            data-desktop="1" data-laptop="1" data-tablet="1" data-mobile="1">
+
+
+            <div class="owl-stage-outer">
+                <div class="owl-stage"
+                    style="transform: translate3d(1284px, 0px, 0px); transition: all 0s ease 0s; width: 5133px;">
+                    <div class="owl-item cloned" style="width: 641.6px;">
+                        <div class="item text-center">
+                            <a href="/static/arti/images/floor_plan/plan_3.jpg" class="mfp-image gallery-item">
+                                <img src="/static/arti/images/floor_plan/plan_3.jpg" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="owl-item cloned" style="width: 641.6px;">
+                        <div class="item text-center">
+                            <a href="/static/arti/images/floor_plan/plan_4.jpg" class="mfp-image gallery-item">
+                                <img src="/static/arti/images/floor_plan/plan_4.jpg" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="owl-item active" style="width: 641.6px;">
+                        <div class="item text-center">
+                            <a href="/static/arti/images/floor_plan/plan_1.jpg" class="mfp-image gallery-item">
+                                <img src="/static/arti/images/floor_plan/plan_1.jpg" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="owl-item active" style="width: 641.6px;">
+                        <div class="item text-center">
+                            <a href="/static/arti/images/floor_plan/plan_2.jpg" class="mfp-image gallery-item">
+                                <img src="/static/arti/images/floor_plan/plan_2.jpg" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="owl-item" style="width: 641.6px;">
+                        <div class="item text-center">
+                            <a href="/static/arti/images/floor_plan/plan_3.jpg" class="mfp-image gallery-item">
+                                <img src="/static/arti/images/floor_plan/plan_3.jpg" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="owl-item" style="width: 641.6px;">
+                        <div class="item text-center">
+                            <a href="/static/arti/images/floor_plan/plan_4.jpg" class="mfp-image gallery-item">
+                                <img src="/static/arti/images/floor_plan/plan_4.jpg" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="owl-item cloned" style="width: 641.6px;">
+                        <div class="item text-center">
+                            <a href="/static/arti/images/floor_plan/plan_1.jpg" class="mfp-image gallery-item">
+                                <img src="/static/arti/images/floor_plan/plan_1.jpg" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="owl-item cloned" style="width: 641.6px;">
+                        <div class="item text-center">
+                            <a href="/static/arti/images/floor_plan/plan_2.jpg" class="mfp-image gallery-item">
+                                <img src="/static/arti/images/floor_plan/plan_2.jpg" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><i
+                        class="prev ion-ios-arrow-right"></i></button><button type="button" role="presentation"
+                    class="owl-next"><i class="next ion-ios-arrow-left"></i></button></div>
+            <div class="owl-dots disabled"></div>
+        </div>
+    </div>
+    <!-- <div class="detail-header">
+        <h3 class="detail-title">موقعیت مکانی</h3>
+    </div>
+    <div class="detail-content">
+        <div id="googleMap" data-icon="images/icon_location.png" data-lat="38.066082" data-lon="46.323638"
+            style="position: relative; overflow: hidden;">
+            <div
+                style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);">
+                <div class="gm-style"
+                    style="position: absolute; z-index: 0; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px;">
+                    <div tabindex="0" aria-label="Map" aria-roledescription="map" role="group"
+                        style="position: absolute; z-index: 0; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; cursor: url(&quot;https://maps.gstatic.com/mapfiles/openhand_8_8.cur&quot;), default; touch-action: pan-x pan-y;">
+                        <div
+                            style="z-index: 1; position: absolute; left: 50%; top: 50%; width: 100%; transform: translate(0px, 0px);">
+                            <div style="position: absolute; left: 0px; top: 0px; z-index: 100; width: 100%;">
+                                <div style="position: absolute; left: 0px; top: 0px; z-index: 0;">
+                                    <div
+                                        style="position: absolute; z-index: 984; transform: matrix(1, 0, 0, 1, -246, -215);">
+                                        <div
+                                            style="position: absolute; left: 256px; top: 0px; width: 256px; height: 256px;">
+                                            <div style="width: 256px; height: 256px;"></div>
+                                        </div>
+                                        <div
+                                            style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px;">
+                                            <div style="width: 256px; height: 256px;"></div>
+                                        </div>
+                                        <div
+                                            style="position: absolute; left: 0px; top: -256px; width: 256px; height: 256px;">
+                                            <div style="width: 256px; height: 256px;"></div>
+                                        </div>
+                                        <div
+                                            style="position: absolute; left: 256px; top: -256px; width: 256px; height: 256px;">
+                                            <div style="width: 256px; height: 256px;"></div>
+                                        </div>
+                                        <div
+                                            style="position: absolute; left: 512px; top: -256px; width: 256px; height: 256px;">
+                                            <div style="width: 256px; height: 256px;"></div>
+                                        </div>
+                                        <div
+                                            style="position: absolute; left: 512px; top: 0px; width: 256px; height: 256px;">
+                                            <div style="width: 256px; height: 256px;"></div>
+                                        </div>
+                                        <div
+                                            style="position: absolute; left: 512px; top: 256px; width: 256px; height: 256px;">
+                                            <div style="width: 256px; height: 256px;"></div>
+                                        </div>
+                                        <div
+                                            style="position: absolute; left: 256px; top: 256px; width: 256px; height: 256px;">
+                                            <div style="width: 256px; height: 256px;"></div>
+                                        </div>
+                                        <div
+                                            style="position: absolute; left: 0px; top: 256px; width: 256px; height: 256px;">
+                                            <div style="width: 256px; height: 256px;"></div>
+                                        </div>
+                                        <div
+                                            style="position: absolute; left: -256px; top: 256px; width: 256px; height: 256px;">
+                                            <div style="width: 256px; height: 256px;"></div>
+                                        </div>
+                                        <div
+                                            style="position: absolute; left: -256px; top: 0px; width: 256px; height: 256px;">
+                                            <div style="width: 256px; height: 256px;"></div>
+                                        </div>
+                                        <div
+                                            style="position: absolute; left: -256px; top: -256px; width: 256px; height: 256px;">
+                                            <div style="width: 256px; height: 256px;"></div>
+                                        </div>
+                                        <div
+                                            style="position: absolute; left: 768px; top: -256px; width: 256px; height: 256px;">
+                                            <div style="width: 256px; height: 256px;"></div>
+                                        </div>
+                                        <div
+                                            style="position: absolute; left: 768px; top: 0px; width: 256px; height: 256px;">
+                                            <div style="width: 256px; height: 256px;"></div>
+                                        </div>
+                                        <div
+                                            style="position: absolute; left: 768px; top: 256px; width: 256px; height: 256px;">
+                                            <div style="width: 256px; height: 256px;"></div>
+                                        </div>
+                                        <div
+                                            style="position: absolute; left: -512px; top: 256px; width: 256px; height: 256px;">
+                                            <div style="width: 256px; height: 256px;"></div>
+                                        </div>
+                                        <div
+                                            style="position: absolute; left: -512px; top: 0px; width: 256px; height: 256px;">
+                                            <div style="width: 256px; height: 256px;"></div>
+                                        </div>
+                                        <div
+                                            style="position: absolute; left: -512px; top: -256px; width: 256px; height: 256px;">
+                                            <div style="width: 256px; height: 256px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="position: absolute; left: 0px; top: 0px; z-index: 101; width: 100%;"></div>
+                            <div style="position: absolute; left: 0px; top: 0px; z-index: 102; width: 100%;"></div>
+                            <div style="position: absolute; left: 0px; top: 0px; z-index: 103; width: 100%;">
+                                <div
+                                    style="width: 60px; height: 60px; overflow: hidden; position: absolute; left: -30px; top: -60px; z-index: 0;">
+                                    <img alt="" src="images/icon_location.png" draggable="false"
+                                        style="position: absolute; left: 0px; top: 0px; user-select: none; width: 60px; height: 60px; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                                </div>
+                                <div style="position: absolute; left: 0px; top: 0px; z-index: -1;">
+                                    <div
+                                        style="position: absolute; z-index: 984; transform: matrix(1, 0, 0, 1, -246, -215);">
+                                        <div
+                                            style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 256px; top: 0px;">
+                                        </div>
+                                        <div
+                                            style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 0px; top: 0px;">
+                                        </div>
+                                        <div
+                                            style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 0px; top: -256px;">
+                                        </div>
+                                        <div
+                                            style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 256px; top: -256px;">
+                                        </div>
+                                        <div
+                                            style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 512px; top: -256px;">
+                                        </div>
+                                        <div
+                                            style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 512px; top: 0px;">
+                                        </div>
+                                        <div
+                                            style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 512px; top: 256px;">
+                                        </div>
+                                        <div
+                                            style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 256px; top: 256px;">
+                                        </div>
+                                        <div
+                                            style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 0px; top: 256px;">
+                                        </div>
+                                        <div
+                                            style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -256px; top: 256px;">
+                                        </div>
+                                        <div
+                                            style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -256px; top: 0px;">
+                                        </div>
+                                        <div
+                                            style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -256px; top: -256px;">
+                                        </div>
+                                        <div
+                                            style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 768px; top: -256px;">
+                                        </div>
+                                        <div
+                                            style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 768px; top: 0px;">
+                                        </div>
+                                        <div
+                                            style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 768px; top: 256px;">
+                                        </div>
+                                        <div
+                                            style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -512px; top: 256px;">
+                                        </div>
+                                        <div
+                                            style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -512px; top: 0px;">
+                                        </div>
+                                        <div
+                                            style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -512px; top: -256px;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="position: absolute; left: 0px; top: 0px; z-index: 0;">
+                                <div
+                                    style="position: absolute; z-index: 984; transform: matrix(1, 0, 0, 1, -246, -215);">
+                                    <div
+                                        style="position: absolute; left: 256px; top: -256px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;">
+                                        <img draggable="false" alt="" role="presentation"
+                                            src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i16!2i41201!3i25262!4i256!2m3!1e0!2sm!3i546272480!2m3!1e2!6m1!3e5!3m17!2sfa!3sUS!5e18!12m4!1e68!2m2!1sset!2sRoadmap!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcC5zOi02MHxwLmw6LTYw!4e0!5m1!5f2&amp;key=AIzaSyAEn4c_T1rFt7ltf_oNavnjND8dDPm4KQs&amp;token=23046"
+                                            style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                                    </div>
+                                    <div
+                                        style="position: absolute; left: 512px; top: -256px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;">
+                                        <img draggable="false" alt="" role="presentation"
+                                            src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i16!2i41202!3i25262!4i256!2m3!1e0!2sm!3i546272168!2m3!1e2!6m1!3e5!3m17!2sfa!3sUS!5e18!12m4!1e68!2m2!1sset!2sRoadmap!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcC5zOi02MHxwLmw6LTYw!4e0!5m1!5f2&amp;key=AIzaSyAEn4c_T1rFt7ltf_oNavnjND8dDPm4KQs&amp;token=49218"
+                                            style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                                    </div>
+                                    <div
+                                        style="position: absolute; left: 512px; top: 0px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;">
+                                        <img draggable="false" alt="" role="presentation"
+                                            src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i16!2i41202!3i25263!4i256!2m3!1e0!2sm!3i546272168!2m3!1e2!6m1!3e5!3m17!2sfa!3sUS!5e18!12m4!1e68!2m2!1sset!2sRoadmap!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcC5zOi02MHxwLmw6LTYw!4e0!5m1!5f2&amp;key=AIzaSyAEn4c_T1rFt7ltf_oNavnjND8dDPm4KQs&amp;token=14775"
+                                            style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                                    </div>
+                                    <div
+                                        style="position: absolute; left: 512px; top: 256px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;">
+                                        <img draggable="false" alt="" role="presentation"
+                                            src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i16!2i41202!3i25264!4i256!2m3!1e0!2sm!3i546272168!2m3!1e2!6m1!3e5!3m17!2sfa!3sUS!5e18!12m4!1e68!2m2!1sset!2sRoadmap!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcC5zOi02MHxwLmw6LTYw!4e0!5m1!5f2&amp;key=AIzaSyAEn4c_T1rFt7ltf_oNavnjND8dDPm4KQs&amp;token=111403"
+                                            style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                                    </div>
+                                    <div
+                                        style="position: absolute; left: 256px; top: 0px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;">
+                                        <img draggable="false" alt="" role="presentation"
+                                            src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i16!2i41201!3i25263!4i256!2m3!1e0!2sm!3i546272480!2m3!1e2!6m1!3e5!3m17!2sfa!3sUS!5e18!12m4!1e68!2m2!1sset!2sRoadmap!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcC5zOi02MHxwLmw6LTYw!4e0!5m1!5f2&amp;key=AIzaSyAEn4c_T1rFt7ltf_oNavnjND8dDPm4KQs&amp;token=119674"
+                                            style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                                    </div>
+                                    <div
+                                        style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;">
+                                        <img draggable="false" alt="" role="presentation"
+                                            src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i16!2i41200!3i25263!4i256!2m3!1e0!2sm!3i546272480!2m3!1e2!6m1!3e5!3m17!2sfa!3sUS!5e18!12m4!1e68!2m2!1sset!2sRoadmap!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcC5zOi02MHxwLmw6LTYw!4e0!5m1!5f2&amp;key=AIzaSyAEn4c_T1rFt7ltf_oNavnjND8dDPm4KQs&amp;token=31413"
+                                            style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                                    </div>
+                                    <div
+                                        style="position: absolute; left: 0px; top: -256px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;">
+                                        <img draggable="false" alt="" role="presentation"
+                                            src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i16!2i41200!3i25262!4i256!2m3!1e0!2sm!3i546272480!2m3!1e2!6m1!3e5!3m17!2sfa!3sUS!5e18!12m4!1e68!2m2!1sset!2sRoadmap!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcC5zOi02MHxwLmw6LTYw!4e0!5m1!5f2&amp;key=AIzaSyAEn4c_T1rFt7ltf_oNavnjND8dDPm4KQs&amp;token=65856"
+                                            style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                                    </div>
+                                    <div
+                                        style="position: absolute; left: 0px; top: 256px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;">
+                                        <img draggable="false" alt="" role="presentation"
+                                            src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i16!2i41200!3i25264!4i256!2m3!1e0!2sm!3i546272456!2m3!1e2!6m1!3e5!3m17!2sfa!3sUS!5e18!12m4!1e68!2m2!1sset!2sRoadmap!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcC5zOi02MHxwLmw6LTYw!4e0!5m1!5f2&amp;key=AIzaSyAEn4c_T1rFt7ltf_oNavnjND8dDPm4KQs&amp;token=35160"
+                                            style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                                    </div>
+                                    <div
+                                        style="position: absolute; left: 256px; top: 256px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;">
+                                        <img draggable="false" alt="" role="presentation"
+                                            src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i16!2i41201!3i25264!4i256!2m3!1e0!2sm!3i546272456!2m3!1e2!6m1!3e5!3m17!2sfa!3sUS!5e18!12m4!1e68!2m2!1sset!2sRoadmap!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcC5zOi02MHxwLmw6LTYw!4e0!5m1!5f2&amp;key=AIzaSyAEn4c_T1rFt7ltf_oNavnjND8dDPm4KQs&amp;token=123421"
+                                            style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                                    </div>
+                                    <div
+                                        style="position: absolute; left: -256px; top: 0px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;">
+                                        <img draggable="false" alt="" role="presentation"
+                                            src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i16!2i41199!3i25263!4i256!2m3!1e0!2sm!3i546272480!2m3!1e2!6m1!3e5!3m17!2sfa!3sUS!5e18!12m4!1e68!2m2!1sset!2sRoadmap!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcC5zOi02MHxwLmw6LTYw!4e0!5m1!5f2&amp;key=AIzaSyAEn4c_T1rFt7ltf_oNavnjND8dDPm4KQs&amp;token=89487"
+                                            style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                                    </div>
+                                    <div
+                                        style="position: absolute; left: -256px; top: -256px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;">
+                                        <img draggable="false" alt="" role="presentation"
+                                            src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i16!2i41199!3i25262!4i256!2m3!1e0!2sm!3i546272480!2m3!1e2!6m1!3e5!3m17!2sfa!3sUS!5e18!12m4!1e68!2m2!1sset!2sRoadmap!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcC5zOi02MHxwLmw6LTYw!4e0!5m1!5f2&amp;key=AIzaSyAEn4c_T1rFt7ltf_oNavnjND8dDPm4KQs&amp;token=123930"
+                                            style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                                    </div>
+                                    <div
+                                        style="position: absolute; left: -256px; top: 256px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;">
+                                        <img draggable="false" alt="" role="presentation"
+                                            src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i16!2i41199!3i25264!4i256!2m3!1e0!2sm!3i546272456!2m3!1e2!6m1!3e5!3m17!2sfa!3sUS!5e18!12m4!1e68!2m2!1sset!2sRoadmap!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcC5zOi02MHxwLmw6LTYw!4e0!5m1!5f2&amp;key=AIzaSyAEn4c_T1rFt7ltf_oNavnjND8dDPm4KQs&amp;token=93234"
+                                            style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                                    </div>
+                                    <div
+                                        style="position: absolute; left: 768px; top: -256px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;">
+                                        <img draggable="false" alt="" role="presentation"
+                                            src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i16!2i41203!3i25262!4i256!2m3!1e0!2sm!3i546272168!2m3!1e2!6m1!3e5!3m17!2sfa!3sUS!5e18!12m4!1e68!2m2!1sset!2sRoadmap!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcC5zOi02MHxwLmw6LTYw!4e0!5m1!5f2&amp;key=AIzaSyAEn4c_T1rFt7ltf_oNavnjND8dDPm4KQs&amp;token=6408"
+                                            style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                                    </div>
+                                    <div
+                                        style="position: absolute; left: 768px; top: 0px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;">
+                                        <img draggable="false" alt="" role="presentation"
+                                            src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i16!2i41203!3i25263!4i256!2m3!1e0!2sm!3i546272180!2m3!1e2!6m1!3e5!3m17!2sfa!3sUS!5e18!12m4!1e68!2m2!1sset!2sRoadmap!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcC5zOi02MHxwLmw6LTYw!4e0!5m1!5f2&amp;key=AIzaSyAEn4c_T1rFt7ltf_oNavnjND8dDPm4KQs&amp;token=75784"
+                                            style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                                    </div>
+                                    <div
+                                        style="position: absolute; left: 768px; top: 256px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;">
+                                        <img draggable="false" alt="" role="presentation"
+                                            src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i16!2i41203!3i25264!4i256!2m3!1e0!2sm!3i546272180!2m3!1e2!6m1!3e5!3m17!2sfa!3sUS!5e18!12m4!1e68!2m2!1sset!2sRoadmap!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcC5zOi02MHxwLmw6LTYw!4e0!5m1!5f2&amp;key=AIzaSyAEn4c_T1rFt7ltf_oNavnjND8dDPm4KQs&amp;token=41341"
+                                            style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                                    </div>
+                                    <div
+                                        style="position: absolute; left: -512px; top: 256px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;">
+                                        <img draggable="false" alt="" role="presentation"
+                                            src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i16!2i41198!3i25264!4i256!2m3!1e0!2sm!3i546272408!2m3!1e2!6m1!3e5!3m17!2sfa!3sUS!5e18!12m4!1e68!2m2!1sset!2sRoadmap!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcC5zOi02MHxwLmw6LTYw!4e0!5m1!5f2&amp;key=AIzaSyAEn4c_T1rFt7ltf_oNavnjND8dDPm4KQs&amp;token=65039"
+                                            style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                                    </div>
+                                    <div
+                                        style="position: absolute; left: -512px; top: 0px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;">
+                                        <img draggable="false" alt="" role="presentation"
+                                            src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i16!2i41198!3i25263!4i256!2m3!1e0!2sm!3i546272396!2m3!1e2!6m1!3e5!3m17!2sfa!3sUS!5e18!12m4!1e68!2m2!1sset!2sRoadmap!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcC5zOi02MHxwLmw6LTYw!4e0!5m1!5f2&amp;key=AIzaSyAEn4c_T1rFt7ltf_oNavnjND8dDPm4KQs&amp;token=5990"
+                                            style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                                    </div>
+                                    <div
+                                        style="position: absolute; left: -512px; top: -256px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;">
+                                        <img draggable="false" alt="" role="presentation"
+                                            src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i16!2i41198!3i25262!4i256!2m3!1e0!2sm!3i546272396!2m3!1e2!6m1!3e5!3m17!2sfa!3sUS!5e18!12m4!1e68!2m2!1sset!2sRoadmap!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcC5zOi02MHxwLmw6LTYw!4e0!5m1!5f2&amp;key=AIzaSyAEn4c_T1rFt7ltf_oNavnjND8dDPm4KQs&amp;token=40433"
+                                            style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="gm-style-pbc"
+                            style="z-index: 2; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px; opacity: 0;">
+                            <p class="gm-style-pbt"></p>
+                        </div>
+                        <div
+                            style="z-index: 3; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px; touch-action: pan-x pan-y;">
+                            <div
+                                style="z-index: 4; position: absolute; left: 50%; top: 50%; width: 100%; transform: translate(0px, 0px);">
+                                <div style="position: absolute; left: 0px; top: 0px; z-index: 104; width: 100%;"></div>
+                                <div style="position: absolute; left: 0px; top: 0px; z-index: 105; width: 100%;"></div>
+                                <div style="position: absolute; left: 0px; top: 0px; z-index: 106; width: 100%;">
+                                    <div title="" tabindex="-1"
+                                        style="width: 76px; height: 76px; overflow: hidden; position: absolute; cursor: pointer; touch-action: none; left: -38px; top: -68px; z-index: 0;">
+                                        <img alt="" src="https://maps.gstatic.com/mapfiles/transparent.png"
+                                            draggable="false"
+                                            style="width: 76px; height: 76px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                                    </div>
+                                </div>
+                                <div style="position: absolute; left: 0px; top: 0px; z-index: 107; width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div><iframe aria-hidden="true" frameborder="0" tabindex="-1"
+                        style="z-index: -1; position: absolute; width: 100%; height: 100%; top: 0px; left: 0px; border: none;"
+                        __idm_frm__="18333"></iframe>
+                    <div
+                        style="pointer-events: none; width: 100%; height: 100%; box-sizing: border-box; position: absolute; z-index: 1000002; opacity: 0; border: 2px solid rgb(26, 115, 232);">
+                    </div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div><button draggable="false" title="جابه‌جایی به نمای تمام‌صفحه"
+                            aria-label="جابه‌جایی به نمای تمام‌صفحه" type="button"
+                            class="gm-control-active gm-fullscreen-control"
+                            style="background: none rgb(255, 255, 255); border: 0px; margin: 10px; padding: 0px; text-transform: none; appearance: none; position: absolute; cursor: pointer; user-select: none; border-radius: 2px; height: 40px; width: 40px; box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px; overflow: hidden; top: 0px; right: 0px;"><img
+                                src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2018%2018%22%3E%0A%20%20%3Cpath%20fill%3D%22%23666%22%20d%3D%22M0%2C0v2v4h2V2h4V0H2H0z%20M16%2C0h-4v2h4v4h2V2V0H16z%20M16%2C16h-4v2h4h2v-2v-4h-2V16z%20M2%2C12H0v4v2h2h4v-2H2V12z%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                alt="" style="height: 18px; width: 18px;"><img
+                                src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2018%2018%22%3E%0A%20%20%3Cpath%20fill%3D%22%23333%22%20d%3D%22M0%2C0v2v4h2V2h4V0H2H0z%20M16%2C0h-4v2h4v4h2V2V0H16z%20M16%2C16h-4v2h4h2v-2v-4h-2V16z%20M2%2C12H0v4v2h2h4v-2H2V12z%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                alt="" style="height: 18px; width: 18px;"><img
+                                src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2018%2018%22%3E%0A%20%20%3Cpath%20fill%3D%22%23111%22%20d%3D%22M0%2C0v2v4h2V2h4V0H2H0z%20M16%2C0h-4v2h4v4h2V2V0H16z%20M16%2C16h-4v2h4h2v-2v-4h-2V16z%20M2%2C12H0v4v2h2h4v-2H2V12z%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                alt="" style="height: 18px; width: 18px;"></button></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div>
+                        <div class="gmnoprint gm-bundled-control gm-bundled-control-on-bottom" draggable="false"
+                            controlwidth="0" controlheight="0"
+                            style="margin: 10px; user-select: none; position: absolute; display: none; bottom: 26px; left: 0px;">
+                            <div class="gmnoprint" controlwidth="40" controlheight="40"
+                                style="display: none; position: absolute;">
+                                <div
+                                    style="background-color: rgb(255, 255, 255); box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px; border-radius: 2px; width: 40px; height: 40px;">
+                                    <button draggable="false" title="چرخاندن ساعت‌گرد نقشه"
+                                        aria-label="چرخاندن ساعت‌گرد نقشه" type="button" class="gm-control-active"
+                                        style="background: none; display: none; border: 0px; margin: 0px; padding: 0px; text-transform: none; appearance: none; position: relative; cursor: pointer; user-select: none; left: 0px; top: 0px; overflow: hidden; width: 40px; height: 40px;"><img
+                                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%3E%0A%20%20%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h24v24H0V0z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22%23666%22%20d%3D%22M12.06%209.06l4-4-4-4-1.41%201.41%201.59%201.59h-.18c-2.3%200-4.6.88-6.35%202.64-3.52%203.51-3.52%209.21%200%2012.72%201.5%201.5%203.4%202.36%205.36%202.58v-2.02c-1.44-.21-2.84-.86-3.95-1.97-2.73-2.73-2.73-7.17%200-9.9%201.37-1.37%203.16-2.05%204.95-2.05h.17l-1.59%201.59%201.41%201.41zm8.94%203c-.19-1.74-.88-3.32-1.91-4.61l-1.43%201.43c.69.92%201.15%202%201.32%203.18H21zm-7.94%207.92V22c1.74-.19%203.32-.88%204.61-1.91l-1.43-1.43c-.91.68-2%201.15-3.18%201.32zm4.6-2.74l1.43%201.43c1.04-1.29%201.72-2.88%201.91-4.61h-2.02c-.17%201.18-.64%202.27-1.32%203.18z%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                            style="width: 20px; height: 20px;"><img
+                                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%3E%0A%20%20%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h24v24H0V0z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22%23333%22%20d%3D%22M12.06%209.06l4-4-4-4-1.41%201.41%201.59%201.59h-.18c-2.3%200-4.6.88-6.35%202.64-3.52%203.51-3.52%209.21%200%2012.72%201.5%201.5%203.4%202.36%205.36%202.58v-2.02c-1.44-.21-2.84-.86-3.95-1.97-2.73-2.73-2.73-7.17%200-9.9%201.37-1.37%203.16-2.05%204.95-2.05h.17l-1.59%201.59%201.41%201.41zm8.94%203c-.19-1.74-.88-3.32-1.91-4.61l-1.43%201.43c.69.92%201.15%202%201.32%203.18H21zm-7.94%207.92V22c1.74-.19%203.32-.88%204.61-1.91l-1.43-1.43c-.91.68-2%201.15-3.18%201.32zm4.6-2.74l1.43%201.43c1.04-1.29%201.72-2.88%201.91-4.61h-2.02c-.17%201.18-.64%202.27-1.32%203.18z%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                            style="width: 20px; height: 20px;"><img
+                                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%3E%0A%20%20%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h24v24H0V0z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22%23111%22%20d%3D%22M12.06%209.06l4-4-4-4-1.41%201.41%201.59%201.59h-.18c-2.3%200-4.6.88-6.35%202.64-3.52%203.51-3.52%209.21%200%2012.72%201.5%201.5%203.4%202.36%205.36%202.58v-2.02c-1.44-.21-2.84-.86-3.95-1.97-2.73-2.73-2.73-7.17%200-9.9%201.37-1.37%203.16-2.05%204.95-2.05h.17l-1.59%201.59%201.41%201.41zm8.94%203c-.19-1.74-.88-3.32-1.91-4.61l-1.43%201.43c.69.92%201.15%202%201.32%203.18H21zm-7.94%207.92V22c1.74-.19%203.32-.88%204.61-1.91l-1.43-1.43c-.91.68-2%201.15-3.18%201.32zm4.6-2.74l1.43%201.43c1.04-1.29%201.72-2.88%201.91-4.61h-2.02c-.17%201.18-.64%202.27-1.32%203.18z%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                            style="width: 20px; height: 20px;"></button>
+                                    <div
+                                        style="position: relative; overflow: hidden; width: 30px; height: 1px; margin: 0px 5px; background-color: rgb(230, 230, 230); display: none;">
+                                    </div><button draggable="false" title="چرخاندن پادساعت‌گرد نقشه"
+                                        aria-label="چرخاندن پادساعت‌گرد نقشه" type="button" class="gm-control-active"
+                                        style="background: none; display: none; border: 0px; margin: 0px; padding: 0px; text-transform: none; appearance: none; position: relative; cursor: pointer; user-select: none; left: 0px; top: 0px; overflow: hidden; width: 40px; height: 40px; transform: scaleX(-1);"><img
+                                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%3E%0A%20%20%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h24v24H0V0z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22%23666%22%20d%3D%22M12.06%209.06l4-4-4-4-1.41%201.41%201.59%201.59h-.18c-2.3%200-4.6.88-6.35%202.64-3.52%203.51-3.52%209.21%200%2012.72%201.5%201.5%203.4%202.36%205.36%202.58v-2.02c-1.44-.21-2.84-.86-3.95-1.97-2.73-2.73-2.73-7.17%200-9.9%201.37-1.37%203.16-2.05%204.95-2.05h.17l-1.59%201.59%201.41%201.41zm8.94%203c-.19-1.74-.88-3.32-1.91-4.61l-1.43%201.43c.69.92%201.15%202%201.32%203.18H21zm-7.94%207.92V22c1.74-.19%203.32-.88%204.61-1.91l-1.43-1.43c-.91.68-2%201.15-3.18%201.32zm4.6-2.74l1.43%201.43c1.04-1.29%201.72-2.88%201.91-4.61h-2.02c-.17%201.18-.64%202.27-1.32%203.18z%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                            style="width: 20px; height: 20px;"><img
+                                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%3E%0A%20%20%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h24v24H0V0z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22%23333%22%20d%3D%22M12.06%209.06l4-4-4-4-1.41%201.41%201.59%201.59h-.18c-2.3%200-4.6.88-6.35%202.64-3.52%203.51-3.52%209.21%200%2012.72%201.5%201.5%203.4%202.36%205.36%202.58v-2.02c-1.44-.21-2.84-.86-3.95-1.97-2.73-2.73-2.73-7.17%200-9.9%201.37-1.37%203.16-2.05%204.95-2.05h.17l-1.59%201.59%201.41%201.41zm8.94%203c-.19-1.74-.88-3.32-1.91-4.61l-1.43%201.43c.69.92%201.15%202%201.32%203.18H21zm-7.94%207.92V22c1.74-.19%203.32-.88%204.61-1.91l-1.43-1.43c-.91.68-2%201.15-3.18%201.32zm4.6-2.74l1.43%201.43c1.04-1.29%201.72-2.88%201.91-4.61h-2.02c-.17%201.18-.64%202.27-1.32%203.18z%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                            style="width: 20px; height: 20px;"><img
+                                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%3E%0A%20%20%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h24v24H0V0z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22%23111%22%20d%3D%22M12.06%209.06l4-4-4-4-1.41%201.41%201.59%201.59h-.18c-2.3%200-4.6.88-6.35%202.64-3.52%203.51-3.52%209.21%200%2012.72%201.5%201.5%203.4%202.36%205.36%202.58v-2.02c-1.44-.21-2.84-.86-3.95-1.97-2.73-2.73-2.73-7.17%200-9.9%201.37-1.37%203.16-2.05%204.95-2.05h.17l-1.59%201.59%201.41%201.41zm8.94%203c-.19-1.74-.88-3.32-1.91-4.61l-1.43%201.43c.69.92%201.15%202%201.32%203.18H21zm-7.94%207.92V22c1.74-.19%203.32-.88%204.61-1.91l-1.43-1.43c-.91.68-2%201.15-3.18%201.32zm4.6-2.74l1.43%201.43c1.04-1.29%201.72-2.88%201.91-4.61h-2.02c-.17%201.18-.64%202.27-1.32%203.18z%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                            style="width: 20px; height: 20px;"></button>
+                                    <div
+                                        style="position: relative; overflow: hidden; width: 30px; height: 1px; margin: 0px 5px; background-color: rgb(230, 230, 230); display: none;">
+                                    </div><button draggable="false" title="کج کردن نقشه" aria-label="کج کردن نقشه"
+                                        type="button" class="gm-tilt gm-control-active"
+                                        style="background: none; display: block; border: 0px; margin: 0px; padding: 0px; text-transform: none; appearance: none; position: relative; cursor: pointer; user-select: none; top: 0px; left: 0px; overflow: hidden; width: 40px; height: 40px;"><img
+                                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218px%22%20height%3D%2216px%22%20viewBox%3D%220%200%2018%2016%22%3E%0A%20%20%3Cpath%20fill%3D%22%23666%22%20d%3D%22M0%2C16h8V9H0V16z%20M10%2C16h8V9h-8V16z%20M0%2C7h8V0H0V7z%20M10%2C0v7h8V0H10z%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                            style="width: 18px;"><img
+                                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218px%22%20height%3D%2216px%22%20viewBox%3D%220%200%2018%2016%22%3E%0A%20%20%3Cpath%20fill%3D%22%23333%22%20d%3D%22M0%2C16h8V9H0V16z%20M10%2C16h8V9h-8V16z%20M0%2C7h8V0H0V7z%20M10%2C0v7h8V0H10z%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                            style="width: 18px;"><img
+                                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218px%22%20height%3D%2216px%22%20viewBox%3D%220%200%2018%2016%22%3E%0A%20%20%3Cpath%20fill%3D%22%23111%22%20d%3D%22M0%2C16h8V9H0V16z%20M10%2C16h8V9h-8V16z%20M0%2C7h8V0H0V7z%20M10%2C0v7h8V0H10z%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                            style="width: 18px;"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="gmnoprint gm-bundled-control gm-bundled-control-on-bottom" draggable="false"
+                            controlwidth="40" controlheight="81"
+                            style="margin: 10px; user-select: none; position: absolute; bottom: 95px; right: 40px;">
+                            <div class="gmnoprint" controlwidth="40" controlheight="81"
+                                style="position: absolute; left: 0px; top: 0px;">
+                                <div draggable="false"
+                                    style="user-select: none; box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px; border-radius: 2px; cursor: pointer; background-color: rgb(255, 255, 255); width: 40px; height: 81px;">
+                                    <button draggable="false" title="نزدیک‌نمایی کردن" aria-label="نزدیک‌نمایی کردن"
+                                        type="button" class="gm-control-active"
+                                        style="background: none; display: block; border: 0px; margin: 0px; padding: 0px; text-transform: none; appearance: none; position: relative; cursor: pointer; user-select: none; overflow: hidden; width: 40px; height: 40px; top: 0px; left: 0px;"><img
+                                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2018%2018%22%3E%0A%20%20%3Cpolygon%20fill%3D%22%23666%22%20points%3D%2218%2C7%2011%2C7%2011%2C0%207%2C0%207%2C7%200%2C7%200%2C11%207%2C11%207%2C18%2011%2C18%2011%2C11%2018%2C11%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                            alt="" style="height: 18px; width: 18px;"><img
+                                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2018%2018%22%3E%0A%20%20%3Cpolygon%20fill%3D%22%23333%22%20points%3D%2218%2C7%2011%2C7%2011%2C0%207%2C0%207%2C7%200%2C7%200%2C11%207%2C11%207%2C18%2011%2C18%2011%2C11%2018%2C11%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                            alt="" style="height: 18px; width: 18px;"><img
+                                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2018%2018%22%3E%0A%20%20%3Cpolygon%20fill%3D%22%23111%22%20points%3D%2218%2C7%2011%2C7%2011%2C0%207%2C0%207%2C7%200%2C7%200%2C11%207%2C11%207%2C18%2011%2C18%2011%2C11%2018%2C11%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                            alt="" style="height: 18px; width: 18px;"></button>
+                                    <div
+                                        style="position: relative; overflow: hidden; width: 30px; height: 1px; margin: 0px 5px; background-color: rgb(230, 230, 230); top: 0px;">
+                                    </div><button draggable="false" title="دورنمایی کردن" aria-label="دورنمایی کردن"
+                                        type="button" class="gm-control-active"
+                                        style="background: none; display: block; border: 0px; margin: 0px; padding: 0px; text-transform: none; appearance: none; position: relative; cursor: pointer; user-select: none; overflow: hidden; width: 40px; height: 40px; top: 0px; left: 0px;"><img
+                                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2018%2018%22%3E%0A%20%20%3Cpath%20fill%3D%22%23666%22%20d%3D%22M0%2C7h18v4H0V7z%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                            alt="" style="height: 18px; width: 18px;"><img
+                                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2018%2018%22%3E%0A%20%20%3Cpath%20fill%3D%22%23333%22%20d%3D%22M0%2C7h18v4H0V7z%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                            alt="" style="height: 18px; width: 18px;"><img
+                                            src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2018%2018%22%3E%0A%20%20%3Cpath%20fill%3D%22%23111%22%20d%3D%22M0%2C7h18v4H0V7z%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                            alt="" style="height: 18px; width: 18px;"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div
+                            style="margin-left: 5px; margin-right: 5px; z-index: 1000000; position: absolute; left: 0px; bottom: 0px;">
+                            <a target="_blank" rel="noopener"
+                                href="https://maps.google.com/maps?ll=38.066082,46.323638&amp;z=16&amp;t=m&amp;hl=fa&amp;gl=US&amp;mapclient=apiv3"
+                                title="‏این منطقه را در Google Maps باز کنید (پنجره جدیدی باز می‌شود)"
+                                style="position: static; overflow: visible; float: none; display: inline;">
+                                <div style="width: 66px; height: 26px; cursor: pointer;"><img alt=""
+                                        src="https://maps.gstatic.com/mapfiles/api-3/images/google4_hdpi.png"
+                                        draggable="false"
+                                        style="position: absolute; left: 0px; top: 0px; width: 66px; height: 26px; user-select: none; border: 0px; padding: 0px; margin: 0px;">
+                                </div>
+                            </a></div>
+                    </div>
+                    <div></div>
+                    <div>
+                        <div class="gmnoprint"
+                            style="z-index: 1000001; position: absolute; right: 56px; bottom: 0px; width: 86px;">
+                            <div draggable="false" class="gm-style-cc"
+                                style="user-select: none; height: 14px; line-height: 14px;">
+                                <div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;">
+                                    <div style="width: 1px;"></div>
+                                    <div
+                                        style="background-color: rgb(245, 245, 245); width: auto; height: 100%; margin-left: 1px;">
+                                    </div>
+                                </div>
+                                <div
+                                    style="position: relative; padding-right: 6px; padding-left: 6px; box-sizing: border-box; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(0, 0, 0); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;">
+                                    <a style="text-decoration: none; cursor: pointer; display: none;">داده‌های
+                                        نقشه</a><span>داده‌های نقشه ©2021</span></div>
+                            </div>
+                        </div>
+                        <div class="gmnoprint gm-style-cc" draggable="false"
+                            style="z-index: 1000001; user-select: none; height: 14px; line-height: 14px; position: absolute; right: 0px; bottom: 0px;">
+                            <div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;">
+                                <div style="width: 1px;"></div>
+                                <div
+                                    style="background-color: rgb(245, 245, 245); width: auto; height: 100%; margin-left: 1px;">
+                                </div>
+                            </div>
+                            <div
+                                style="position: relative; padding-right: 6px; padding-left: 6px; box-sizing: border-box; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(0, 0, 0); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;">
+                                <a href="https://www.google.com/intl/fa_US/help/terms_maps.html" target="_blank"
+                                    rel="noopener"
+                                    style="text-decoration: none; cursor: pointer; color: rgb(0, 0, 0);">شرایط
+                                    استفاده</a></div>
+                        </div>
+                        <div class="gmnoscreen" style="position: absolute; right: 0px; bottom: 0px;">
+                            <div
+                                style="font-family: Roboto, Arial, sans-serif; font-size: 11px; color: rgb(0, 0, 0); direction: ltr; text-align: right; background-color: rgb(245, 245, 245);">
+                                داده‌های نقشه ©2021</div>
+                        </div>
+                    </div>
+                    <div
+                        style="background-color: white; padding: 15px 21px; border: 1px solid rgb(171, 171, 171); font-family: Roboto, Arial, sans-serif; color: rgb(34, 34, 34); box-sizing: border-box; box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 16px; z-index: 10000002; display: none; width: 300px; height: 180px; position: absolute; left: 171px; top: 185px;">
+                        <div style="padding: 0px 0px 10px; font-size: 16px; box-sizing: border-box;">داده‌های نقشه</div>
+                        <div style="font-size: 13px;">داده‌های نقشه ©2021</div><button draggable="false" title="بستن"
+                            aria-label="بستن" type="button" class="gm-ui-hover-effect"
+                            style="background: none; display: block; border: 0px; margin: 0px; padding: 0px; text-transform: none; appearance: none; position: absolute; cursor: pointer; user-select: none; top: 0px; left: 0px; width: 37px; height: 37px;"><img
+                                src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224px%22%20height%3D%2224px%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22%23000000%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M19%206.41L17.59%205%2012%2010.59%206.41%205%205%206.41%2010.59%2012%205%2017.59%206.41%2019%2012%2013.41%2017.59%2019%2019%2017.59%2013.41%2012z%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M0%200h24v24H0z%22%20fill%3D%22none%22%2F%3E%0A%3C%2Fsvg%3E%0A"
+                                alt=""
+                                style="pointer-events: none; display: block; width: 13px; height: 13px; margin: 12px;"></button>
+                    </div>
+                </div>
+            </div>
+            <div
+                style="background-color: white; font-weight: 500; font-family: Roboto, sans-serif; padding: 15px 25px; box-sizing: border-box; top: 5px; border: 1px solid rgba(0, 0, 0, 0.12); border-radius: 5px; left: 50%; max-width: 375px; position: absolute; transform: translateX(-50%); width: calc(100% - 10px); z-index: 1;">
+                <div><img alt="" src="https://maps.gstatic.com/mapfiles/api-3/images/google_gray.svg" draggable="false"
+                        style="padding: 0px; margin: 0px; border: 0px; height: 17px; vertical-align: middle; width: 52px; user-select: none;">
+                </div>
+                <div style="line-height: 20px; margin: 15px 0px;"><span
+                        style="color: rgba(0, 0, 0, 0.87); font-size: 14px;">‏‫این صفحه نمی‌تواند Google Maps را درست
+                        بارگیری کند.</span></div>
+                <table style="width: 100%;">
+                    <tr>
+                        <td style="line-height: 16px; vertical-align: middle;"><a
+                                href="https://developers.google.com/maps/documentation/javascript/error-messages?utm_source=maps_js&amp;utm_medium=degraded&amp;utm_campaign=billing#api-key-and-billing-errors"
+                                target="_blank" rel="noopener" style="color: rgba(0, 0, 0, 0.54); font-size: 12px;">مالک
+                                این وب‌سایت شما هستید؟</a></td>
+                        <td style="text-align: right;"><button class="dismissButton">تأیید</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div> -->
+</div>

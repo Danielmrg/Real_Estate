@@ -1,0 +1,28 @@
+{% extends 'arti/Base/main.html' %}
+{% load static %}
+{% block title %}
+آرتان-{{title}}
+{% endblock title %}
+
+{% block styles %}
+
+{% endblock styles %}
+
+{% block body %}
+{% include "arti/components/nav.html" %}
+<div id="main">
+    {% if agent %}
+    {% include "arti/components/agents/Detail.html" with agent=agent %}
+    {% include "arti/components/agents/request_call.html" %}
+    {% else %}
+    {% include "arti/components/404.html" %}
+    {% endif %}
+
+
+    {% include "arti/components/footer.html" %}
+</div>
+{% endblock body %}
+
+{% block scripts %}
+
+{% endblock scripts %}

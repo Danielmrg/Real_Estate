@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa-IR">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <link rel="shortcut icon" href="{% static 'arti/images/favicon.ico' %}">
+    <title>{% block title %}صفحه اصلی{% endblock title %}</title>
+    {% include "arti/Base/css.html" %}
+    {% block styles %}
+    {% endblock styles %}
+</head>
+
+<body>
+    {% block body %}
+    {% endblock body %}
+
+    {% block scripts %}
+    {% endblock scripts %}
+    {% include "arti/Base/js.html" %}
+</body>
+
+</html>

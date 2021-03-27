@@ -1,0 +1,35 @@
+<div class="row agent-detail style-2">
+    <div class="thumbnail col-md-4">
+        <img src="{{agent.get_image}}" alt="{{agent.get_full_name}}" style="width: 100%;  object-fit: cover;">
+        <div class="agent-social text-center">
+            <a class="fa fa-facebook" href="#"></a>
+            <a class="fa fa-twitter" href="#"></a>
+            <a class="fa fa-google" href="#"></a>
+            <a class="fa fa-pinterest" href="#"></a>
+        </div>
+    </div>
+    <div class="info-agent col-md-8">
+        <div class="box-content">
+            <h3 class="title">
+                <a href="{{agent.get_absolute_url}}" title="Kent Pather">{{agent.get_full_name}} </a>
+            </h3>
+            <div class="box-info">
+                <div class="item-info">
+                    <span class="position">مشاور </span>
+                </div>
+                <ul class="item-info">
+                    <li class="agent-email">
+                        <a href="mailto:{{agent.email}}" target="_top">{{agent.email}}</a>
+                    </li>
+                    <li class="agent-mobile">
+                        <a href="tel:{{agent.phone}}" target="_top">{{agent.phone}}</a>
+                    </li>
+                    <li class="agent-address">سعادت اباد</li>
+                </ul>
+                <div class="agent-about">
+                    {{agent.bio}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

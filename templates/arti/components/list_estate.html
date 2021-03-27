@@ -1,0 +1,30 @@
+{% load advertlist %}
+{% get_Advert as adverts %}
+<div class="section pt-9 pb-9">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <div class="wrap-title">
+                        <h3 class="title">
+                            <span class="first-word">آخرین</span> ملک ها
+                        </h3>
+                        <p class="sub-title">
+                            <i class="icon-decotitle"></i>
+                            <a href="{% url 'home:advert' %}" class="btn btn-warning">موارد بیشتر</a>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            {% for advert in adverts %}
+            <div class="col-md-4 col-sm-6">
+                {% include "arti/components/card/CardN.html" with advert=advert %}
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
